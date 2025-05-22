@@ -1,38 +1,38 @@
 import pygame
 import sys
 
-# 초기화
+# init
 pygame.init()
 pygame.font.init()
 
-# 화면 설정
+# screen setup
 width, height = 800, 500
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Pikachu Volleyball")
 
-# 색상
+# color
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-# FPS 설정
+# FPS
 clock = pygame.time.Clock()
 
-# 배경 설정
+# background setup
 background = pygame.image.load('background.png').convert_alpha()
 background = pygame.transform.scale(background, (width, height))
 background.set_alpha(255)
 
-# 네트 설정
+# net setup
 net_x = width // 2
 net_width = 10
 net_height = 200
 net_top = height - net_height
 
-# 게임 상태 변수
+# game flag
 paused = False
 loser = None
 
-# 메시지 출력 함수
+# show message function
 def show_message(text):
     font_main = pygame.font.SysFont(None, 60)
     font_sub = pygame.font.SysFont(None, 30)
@@ -51,7 +51,7 @@ def show_message(text):
     screen.blit(sub_msg, sub_rect)
     pygame.display.update()
 
-# 피카츄 클래스
+# pikachu class
 class Pikachu:
     def __init__(self, x, y, flip=False):
         self.x = x
@@ -93,7 +93,7 @@ class Pikachu:
                 self.y = height - self.height
                 self.jump = False
 
-# 공 클래스
+# ball class
 class Ball:
     def __init__(self):
         self.x = width // 2
@@ -149,12 +149,12 @@ class Ball:
                 self.x_speed = abs(self.x_speed)
             self.y_speed = -abs(self.y_speed) * 0.7
 
-# 객체 생성
+# pikachu object
 pikachu1 = Pikachu(100, height - 135, flip=True)
 pikachu2 = Pikachu(650, height - 135, flip=False)
 ball = Ball()
 
-# 게임 루프
+# start game
 running = True
 while running:
     clock.tick(60)
